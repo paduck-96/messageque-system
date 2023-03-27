@@ -1,5 +1,6 @@
-package com.example.rabbitmq;
+package com.example.rabbitmq.javamailsend;
 
+import com.example.rabbitmq.dto.RequestDTO;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;

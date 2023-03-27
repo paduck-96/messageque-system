@@ -1,8 +1,10 @@
 package com.example.rabbitmq;
 
+import com.example.rabbitmq.dto.RequestDTO;
+import com.example.rabbitmq.javamailsend.MailService;
+import com.example.rabbitmq.rabbitmail.MailProducer;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

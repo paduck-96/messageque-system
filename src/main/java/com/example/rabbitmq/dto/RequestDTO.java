@@ -1,4 +1,4 @@
-package com.example.rabbitmq;
+package com.example.rabbitmq.dto;
 
 import lombok.*;
 
