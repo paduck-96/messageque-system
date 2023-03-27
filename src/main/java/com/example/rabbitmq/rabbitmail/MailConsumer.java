@@ -1,7 +1,8 @@
-package com.example.rabbitmq;
+package com.example.rabbitmq.rabbitmail;
 
+import com.example.rabbitmq.config.RabbitConfig;
+import com.example.rabbitmq.dto.RequestDTO;
 import lombok.AllArgsConstructor;
-import org.apache.logging.log4j.message.SimpleMessage;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

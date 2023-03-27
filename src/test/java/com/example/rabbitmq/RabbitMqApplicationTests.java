@@ -1,5 +1,8 @@
 package com.example.rabbitmq;
 
+import com.example.rabbitmq.dto.RequestDTO;
+import com.example.rabbitmq.javamailsend.MailService;
+import com.example.rabbitmq.rabbitmail.MailProducer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
