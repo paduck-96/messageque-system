@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.0-M2'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+    // 이메일 빌드
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    // 테스트 코드
+    testImplementation "org.mockito:mockito-core:3.12.4"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
