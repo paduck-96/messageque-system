@@ -34,4 +34,24 @@ public class RabbitConfig {
     public RabbitEmailWorker emailWorker(JavaMailSender javaMailSender) {
         return new RabbitEmailWorker(javaMailSender);
     }
+
+    // 방 참여 이벤트 발생시
+    public static final String RABBIT_JOIN_QUEUE = "rabbit-join-queue";
+    public static final String RABBIT_JOIN_EXCHANGE = "rabbit-join-exchange";
+    public static final String RABBIT_JOIN_ROUTING = "rabbit-join-routing";
+
+    @Bean
+    public Queue joinChatRoomEmailQueue() {
+        return new Queue(RABBIT_JOIN_QUEUE);
+    }
+    @Bean
+    public TopicExchange chatRoomExchange() {
+        return new TopicExchange(RABBIT_JOIN_EXCHANGE);
+    }
+
+    @Bean
+    public Binding joinChatRoomEmailBinding() {
+        return BindingBuilder.bind(joinChatRoomEmailQueue()).to(chatRoomExchange()).with(RABBIT_JOIN_ROUTING);
+    }
+
 }
