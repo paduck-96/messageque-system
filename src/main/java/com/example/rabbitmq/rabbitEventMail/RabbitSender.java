@@ -1,8 +1,8 @@
 package com.example.rabbitmq.rabbitEventMail;
 
 import com.example.rabbitmq.config.RabbitConfig;
-import com.example.rabbitmq.rabbitWebPush.RabbitWebPushDTO;
-import com.example.rabbitmq.rabbitWebPush.RabbitWebPushMessage;
+//import com.example.rabbitmq.rabbitWebPush.RabbitWebPushDTO;
+//import com.example.rabbitmq.rabbitWebPush.RabbitWebPushMessage;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
@@ -21,8 +21,8 @@ public class RabbitSender {
     }
 
     // web push sender
-    public void sendPush(RabbitWebPushMessage message){
-        rabbitTemplate.convertAndSend(RabbitConfig.RABBIT_PUSH_EXCHANGE,
-                RabbitConfig.RABBIT_PUSH_ROUTING, message);
-    }
+//    public void sendPush(RabbitWebPushMessage message){
+//        rabbitTemplate.convertAndSend(RabbitConfig.RABBIT_PUSH_EXCHANGE,
+//                RabbitConfig.RABBIT_PUSH_ROUTING, message);
+//    }
 }
