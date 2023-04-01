@@ -1,16 +1,18 @@
 package com.example.rabbitmq.config;
 
-import com.example.rabbitmq.rabbitmq.RabbitEmailWorker;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
+import org.springframework.amqp.rabbit.listener.RabbitListenerEndpoint;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 
 @Configuration
+@RequiredArgsConstructor
 public class RabbitConfig {
     public static final String QUEUE = "email";
 
@@ -30,10 +32,6 @@ public class RabbitConfig {
         return BindingBuilder.bind(queue()).to(new TopicExchange("direct-exchange")).with("email");
     }
 
-    @Bean
-    public RabbitEmailWorker emailWorker(JavaMailSender javaMailSender) {
-        return new RabbitEmailWorker(javaMailSender);
-    }
 
     // RabbitMQ 로 이메일 발송
     public static final String RABBIT_JOIN_QUEUE = "rabbit-join-queue";
@@ -53,6 +51,7 @@ public class RabbitConfig {
     public Binding joinChatRoomEmailBinding() {
         return BindingBuilder.bind(joinChatRoomEmailQueue()).to(chatRoomExchange()).with(RABBIT_JOIN_ROUTING);
     }
+
 
     // RabbitMQ 로 웹푸시 발송
     public static final String RABBIT_PUSH_QUEUE = "rabbit-push-queue";
@@ -74,4 +73,5 @@ public class RabbitConfig {
                 .to(reservationExchange())
                 .with(RABBIT_PUSH_ROUTING);
     }
+
 }
